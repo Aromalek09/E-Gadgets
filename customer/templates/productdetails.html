@@ -1,0 +1,33 @@
+{% extends 'navbar.html' %}
+{% block nav %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" integrity="sha512-9xKTRVabjVeZmc+GUW8GgSmcREDunMM+Dt/GrzchfN8tkwHizc5RP4Ok/MXFFy5rIjJjzhndFScTceq5e6GvVQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+<div class="d-flex justify-content-center align-items-center" style="height: 90vh;">
+    
+
+
+<div class="row p-2 container border shadow border-3 " style="height: 80vh;">
+    <div class="col d-flex align-items-center">
+        <img src="{{product.image.url}}" class="img-fluid" alt="">
+    </div>
+    <div class="col d-flex flex-column justify-content-center">
+        <h1>{{product.title}}</h1>
+        <h4>{{product.description}}</h4>
+        <p>Category:{{product.category}}</p>
+        <div class="d-grid">
+            <a href="{% url 'acart' product.id %}" class="btn btn-outline-info">
+                <i class="fa-solid fa-cart-plus" style="color: greenyellow;"></i>
+                Add To Cart
+                
+            </a>
+            
+        </div>
+    </div>
+
+</div>
+
+</div>
+
+{% endblock nav %}

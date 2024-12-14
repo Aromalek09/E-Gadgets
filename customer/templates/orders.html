@@ -1,0 +1,77 @@
+{% extends 'navbar.html' %}
+{% block nav%}
+
+
+
+<h1 class="my-3 text-success">Orders</h1>
+
+
+{% if messages %}
+        {% for i in messages %}
+        {% if i.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{{i}}</strong> 
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endif %}
+            {% if i.level == DEFAULT_MESSAGE_LEVELS.ERRORS %}
+
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>{{i}}</strong> 
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endif %}
+        {% endfor%}
+    {% endif %}
+
+
+<div class="d-flex flex-column align-items-center " >
+
+{% if orders %}   
+{% for i in orders %}
+
+<div class="container shadow border border-3 p-2 row mb-3">
+    <div class="col">
+        <img src="{{i.product.image.url}}" class="img-fluid" alt="">
+    </div>
+    <div class="col">
+        <h3>{{i.product.title}}</h3>
+        <h5>Unit price : {{i.product.price}}</h5>
+        <h5>Quantity :{{i.quality}}</h5>
+        <h5>order date:{{i.datetime}}</h5>
+        <h4>
+            {% if i.status == 'OrderPlaced' %}
+            <span class="text-warninng">{{i.status}}</span>
+            <a href="{% url 'cancel' i.id %}" class="btn btn-outline-danger" onclick="return confirm('Are you sure?')" class="btn btn-outline-danger"> Cancel order </a>
+            {% endif %}
+            
+            {% if i.status == 'Shipped' %}
+            <span class="text-info">{{i.status}}</span>
+            <a href="{% url 'cancel' i.id %}" class="btn btn-outline-danger" onclick="return confirm('Are you sure?')" class="btn btn-outline-danger"> Cancel order </a>
+            {% endif %}
+
+
+            {% if i.status == ' OutForDelivery' %}
+            <span class="text-primary">{{i.status}}</span>
+            {% endif %}
+
+            {% if i.status == 'Delivered' %}
+            <span class="text-success">{{i.status}}</span>
+            {% endif %}
+
+            {% if i.status == 'Cancelled' %}
+            <span class="text-danger fw-bolder">{{i.status}}</span>
+            {% endif %}
+
+        </h4>
+    </div>
+</div>
+{% endfor %}
+</div>
+
+{% else %}
+<h4 class=" text-center text-warning my-3">No items added to orders!!!</h4>
+{% endif %}
+
+{% endblock nav %}

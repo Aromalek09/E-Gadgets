@@ -1,0 +1,33 @@
+{% extends 'navbar.html' %}
+
+{% block nav %}
+
+
+<div class="d-flex justify-content-between mb-4">
+<h2>Products</h2>
+
+
+<form action="{% url 'search' %}" method="POST" class="d-flex">
+{% csrf_token %}
+<input type="search" placeholder="Search With name" name="searchkey" class="form-conrol">
+<button class="btn btn-success">Search</button>
+</form>
+</div>
+
+<div class="d-flex justify-content-evenly flex-wrap">
+    {% for i in products %}
+
+<div class="card" style="width: 18rem;">
+    <img src="{{i.image.url}}" height="250px" class="card-img-top" alt="...">
+    <div class="card-body">
+    <h5 class="card-title text-center">{{i.title}}</h5>
+    <p class="card-text text-center">{{i.price}}</p>
+    <a href="{% url 'pdetail' i.id %}" class="stretched-link"></a>
+    </div>
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endblock nav %}

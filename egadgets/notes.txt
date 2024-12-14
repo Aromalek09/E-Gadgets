@@ -1,0 +1,52 @@
+E commerce app
+
+--> customer
+
+=signup,signin
+view product
+view prod details
+add to cart
+view cart list
+remove fro cart
+place order
+view orders
+cancel order
+
+
+---->admin
+add products
+manage product details
+view order
+change order status
+
+
+
+   models
+product:
+-title
+-desc
+price
+category
+image
+
+
+cart:
+
+-product(id ) foreignkey
+-user() foreignkey
+Datetime
+-Quantity
+
+
+orders:
+
+user foreignkey
+product
+Datetime
+Quantity
+status
+
+
+
+
+supperuser creation: python manage.py createsuperuser
